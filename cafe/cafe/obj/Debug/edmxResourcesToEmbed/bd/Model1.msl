@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище cafeModelContainer" CdmEntityContainer="cafeEntities">
+    <EntitySetMapping Name="Gangs">
+      <EntityTypeMapping TypeName="cafeModel.Gang">
+        <MappingFragment StoreEntitySet="Gang">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="id_gang" ColumnName="id_gang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gang_user">
+      <EntityTypeMapping TypeName="cafeModel.Gang_user">
+        <MappingFragment StoreEntitySet="Gang_user">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_gang" ColumnName="id_gang" />
+          <ScalarProperty Name="id_user_gang" ColumnName="id_user_gang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="cafeModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="cafeModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="id_cated_menu" ColumnName="id_cated_menu" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu_category">
+      <EntityTypeMapping TypeName="cafeModel.Menu_category">
+        <MappingFragment StoreEntitySet="Menu_category">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_categ_menu" ColumnName="id_categ_menu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="cafeModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="Number_desk" ColumnName="Number_desk" />
+          <ScalarProperty Name="id_status_cook" ColumnName="id_status_cook" />
+          <ScalarProperty Name="id_status_pay" ColumnName="id_status_pay" />
+          <ScalarProperty Name="Number_people" ColumnName="Number_people" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_menu">
+      <EntityTypeMapping TypeName="cafeModel.Order_menu">
+        <MappingFragment StoreEntitySet="Order_menu">
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="id_order_menu" ColumnName="id_order_menu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rolies">
+      <EntityTypeMapping TypeName="cafeModel.Roly">
+        <MappingFragment StoreEntitySet="Roly">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_roly" ColumnName="id_roly" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status_cook">
+      <EntityTypeMapping TypeName="cafeModel.Status_cook">
+        <MappingFragment StoreEntitySet="Status_cook">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_status_cook" ColumnName="id_status_cook" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status_pay">
+      <EntityTypeMapping TypeName="cafeModel.Status_pay">
+        <MappingFragment StoreEntitySet="Status_pay">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_status_pay" ColumnName="id_status_pay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="cafeModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="cafeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Bith_date" ColumnName="Bith_date" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="id_roly" ColumnName="id_roly" />
+          <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

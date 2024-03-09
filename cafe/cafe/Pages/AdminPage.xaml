@@ -1,0 +1,81 @@
+﻿<Page x:Class="cafe.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:cafe.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                <TextBlock Text="Введите текст для поиска" Margin="0,0,20,0" VerticalAlignment="Center"></TextBlock>
+                <TextBox Height="30" Width="150" x:Name="TxtSearch" TextChanged="TxtSearch_TextChanged"></TextBox>
+                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                <TextBlock Text="Сортировать по цене" Margin="0,0,20,0" VerticalAlignment="Center"></TextBlock>
+                <ComboBox x:Name="CmbSort" Width="150" Height="30" Margin="5" SelectionChanged="CmbSort_SelectionChanged">
+                    <ComboBoxItem Content="По убыванию"></ComboBoxItem>
+                    <ComboBoxItem Content="По возрастанию"></ComboBoxItem>
+                </ComboBox>
+               
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Категория" Margin="5"></TextBlock>
+                <ComboBox x:Name="cmbKateg" SelectionChanged="cmbKateg_SelectionChanged"  Width="150" Height="30" VerticalAlignment="Top" DisplayMemberPath="Name"></ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Width="140" Height="40" Name="BtnReg" Content="Регистрация" IsDefault="True" Click="BtnReg_Click" FontSize="15"></Button>
+        <Button Width="140" Height="40" Name="BtnUser" Content="Сотрудники" IsDefault="True" Click="BtnUser_Click" FontSize="15" Margin="30,0,0,0"></Button>
+            <Button Width="140" Height="40" Name="BtnZakaz" Content="Заказы" IsDefault="True" Click="BtnZakaz_Click" FontSize="15" Margin="30,0,30,0"></Button>
+        <Button Width="140" Height="40" Name="BtnSmena" Content="Рабочие смены" IsDefault="True" Click="BtnSmena_Click" FontSize="15"></Button>
+            
+        </WrapPanel>
+        
+        <ListView Grid.Row="1" Name="ListAssort" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="5" CornerRadius="25" BorderThickness="1" BorderBrush="#2a84f1">
+                        <Grid Width="700" Height="170" Margin="0,0,80,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="img" Source="/img/picture.jpg" Margin="20,0,0,0"/>
+                            <StackPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Column="1" Margin="50,0,0,0" >
+                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" TextWrapping="Wrap" Width="300" ></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
+                                    <TextBlock Text="{Binding Description }" TextWrapping="Wrap" Width="300"  FontSize="15"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Column="2" Margin="50,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Price }" FontSize="15"></TextBlock>
+                                    <TextBlock Text=" рублей" FontSize="15"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

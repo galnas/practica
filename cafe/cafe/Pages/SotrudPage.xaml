@@ -1,0 +1,35 @@
+﻿<Page x:Class="cafe.Pages.SotrudPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:cafe.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SotrudPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="TablAssort" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id_user}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Имя"/>
+                <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество"/>
+                <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон"/>
+                <DataGridTextColumn Binding="{Binding Bith_date}" Header="Дата рождения"/>
+                <DataGridTextColumn Binding="{Binding Login}" Header="Логин"/>
+                <DataGridTextColumn Binding="{Binding Password}" Header="Пароль"/>
+                <DataGridTextColumn Binding="{Binding Roly.Name}" Header="Роль"/>
+                <DataGridTextColumn Binding="{Binding Gender.Name}" Header="Пол"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="btnDel" Content="Удалить" Height="30" Width="100" Click="btnDel_Click"/>
+        </WrapPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище cafeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gang">
+    <Key>
+      <PropertyRef Name="id_gang" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Date" Type="date" />
+    <Property Name="id_gang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gang_user">
+    <Key>
+      <PropertyRef Name="id_user_gang" />
+    </Key>
+    <Property Name="id_user" Type="int" />
+    <Property Name="id_gang" Type="int" />
+    <Property Name="id_user_gang" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="id_gender" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="id_menu" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Price" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_cated_menu" Type="int" />
+    <Property Name="id_menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu_category">
+    <Key>
+      <PropertyRef Name="id_categ_menu" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_categ_menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_user" Type="int" />
+    <Property Name="Number_desk" Type="int" />
+    <Property Name="id_status_cook" Type="int" />
+    <Property Name="id_status_pay" Type="int" />
+    <Property Name="Number_people" Type="int" />
+  </EntityType>
+  <EntityType Name="Order_menu">
+    <Key>
+      <PropertyRef Name="id_order_menu" />
+    </Key>
+    <Property Name="id_order" Type="int" />
+    <Property Name="id_menu" Type="int" />
+    <Property Name="id_order_menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roly">
+    <Key>
+      <PropertyRef Name="id_roly" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_roly" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status_cook">
+    <Key>
+      <PropertyRef Name="id_status_cook" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_status_cook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status_pay">
+    <Key>
+      <PropertyRef Name="id_status_pay" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_status_pay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="Bith_date" Type="date" />
+    <Property Name="Login" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_roly" Type="int" />
+    <Property Name="id_gender" Type="int" />
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Gang_user_Gang">
+    <End Role="Gang" Type="Self.Gang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Gang_user" Type="Self.Gang_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gang">
+        <PropertyRef Name="id_gang" />
+      </Principal>
+      <Dependent Role="Gang_user">
+        <PropertyRef Name="id_gang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gang_user_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Gang_user" Type="Self.Gang_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Gang_user">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Menu_category">
+    <End Role="Menu_category" Type="Self.Menu_category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu_category">
+        <PropertyRef Name="id_categ_menu" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="id_cated_menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_menu_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order_menu" Type="Self.Order_menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="id_menu" />
+      </Principal>
+      <Dependent Role="Order_menu">
+        <PropertyRef Name="id_menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_menu_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order_menu" Type="Self.Order_menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="Order_menu">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Status_cook">
+    <End Role="Status_cook" Type="Self.Status_cook" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status_cook">
+        <PropertyRef Name="id_status_cook" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_status_cook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Status_pay">
+    <End Role="Status_pay" Type="Self.Status_pay" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status_pay">
+        <PropertyRef Name="id_status_pay" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_status_pay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="id_gender" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="id_gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Roly">
+    <End Role="Roly" Type="Self.Roly" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roly">
+        <PropertyRef Name="id_roly" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="id_roly" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище cafeModelContainer">
+    <EntitySet Name="Gang" EntityType="Self.Gang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gang_user" EntityType="Self.Gang_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu_category" EntityType="Self.Menu_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_menu" EntityType="Self.Order_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roly" EntityType="Self.Roly" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status_cook" EntityType="Self.Status_cook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status_pay" EntityType="Self.Status_pay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Gang_user_Gang" Association="Self.FK_Gang_user_Gang">
+      <End Role="Gang" EntitySet="Gang" />
+      <End Role="Gang_user" EntitySet="Gang_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gang_user_User" Association="Self.FK_Gang_user_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Gang_user" EntitySet="Gang_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Menu_category" Association="Self.FK_Menu_Menu_category">
+      <End Role="Menu_category" EntitySet="Menu_category" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_menu_Menu" Association="Self.FK_Order_menu_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Order_menu" EntitySet="Order_menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_menu_Order" Association="Self.FK_Order_menu_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_menu" EntitySet="Order_menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Status_cook" Association="Self.FK_Order_Status_cook">
+      <End Role="Status_cook" EntitySet="Status_cook" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Status_pay" Association="Self.FK_Order_Status_pay">
+      <End Role="Status_pay" EntitySet="Status_pay" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roly" Association="Self.FK_User_Roly">
+      <End Role="Roly" EntitySet="Roly" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
